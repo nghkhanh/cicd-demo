@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKER_IMAGE = "khanhnh/iris-ml-api"
         DOCKER_TAG = "${BUILD_NUMBER}"
-        DOCKER_CREDENTIALS_ID = "khanhjt" 
+        DOCKER_CREDENTIALS_ID = "dockerhub-credentials" 
     }
 
     stages { 
