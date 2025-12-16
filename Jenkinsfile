@@ -64,6 +64,7 @@ pipeline {
                 echo 'Testing FastAPI application...'
                 sh '''
                     . venv/bin/activate
+                    pip install pytest
                     pytest tests/test_app.py -v --tb=short
                 '''
             }
