@@ -4,11 +4,9 @@ pipeline {
     environment {
         DOCKER_IMAGE = "khanhnh/iris-ml-api"
         DOCKER_TAG = "${BUILD_NUMBER}"
-        // Đảm bảo ID này đã tồn tại trong Jenkins Credentials
         DOCKER_CREDENTIALS_ID = "khanhjt" 
     }
 
-    // --- SỬA LỖI 1: Thêm block stages bao quanh ---
     stages { 
         stage('Checkout') {
             steps {
@@ -24,14 +22,8 @@ pipeline {
                     python3 -m venv venv
                     . venv/bin/activate
                     pip install --upgrade pip
-                    
-                    # --- SỬA LỖI 2: pip install . thay vì -r pyproject.toml ---
-                    # Cài đặt package hiện tại ở chế độ editable hoặc cài thường
-                    # Nếu cần cài thêm thư viện test (pytest), hãy đảm bảo chúng nằm trong dependencies
                     pip install . 
                     
-                    # Hoặc nếu bạn có file requirements.txt được generate từ pyproject.toml:
-                    # pip install -r requirements.txt
                 '''
             }
         }
@@ -53,9 +45,8 @@ pipeline {
                 echo 'Testing model training and predictions...'
                 sh '''
                     . venv/bin/activate
-                    # Đảm bảo pytest đã được cài ở bước Setup
                     pip install pytest
-                    pytest tests/test_model.py -v --tb=short
+                    pytest test/test_model.py -v --tb=short
                 '''
             }
         }
@@ -66,7 +57,7 @@ pipeline {
                 sh '''
                     . venv/bin/activate
                     pip install pytest
-                    pytest tests/test_app.py -v --tb=short
+                    pytest test/test_app.py -v --tb=short
                 '''
             }
         }
