@@ -12,7 +12,7 @@ BASE_DIR = os.path.abspath(
 )
 
 MODEL_PATH = os.path.join(BASE_DIR, "models", "iris_model.pkl")
-
+# print(f"model path: {MODEL_PATH}")
 model = None
 
 class PredictionInput(BaseModel):

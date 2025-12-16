@@ -20,7 +20,7 @@ def train_and_save_model():
     print(f"Model accuracy: {accuracy: .2f}")
     
     os.makedirs("models", exist_ok=True)
-    with open("models/iris_model.kl", "wb") as f:
+    with open("models/iris_model.pkl", "wb") as f:
         pickle.dump(model, f)
 
     print("Model saved!")
