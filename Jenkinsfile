@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     environment {
-        DOCKER_IMAGE = "khanhnh/iris-ml-api"
+        DOCKER_IMAGE = "khanhjt/iris-ml-api"
         DOCKER_TAG = "${BUILD_NUMBER}"
         DOCKER_CREDENTIALS_ID = "dockerhub-credentials" 
     }
