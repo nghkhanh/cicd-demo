@@ -1,20 +1,20 @@
 pipeline {
     agent any
     
-    enviroment {
+    environment {
         DOCKER_IMAGE = "khanhnh/iris-ml-api"
         DOCKER_TAG = "${BUILD_NUMBER}"
         DOCKER_CREDENTIALS_ID = "hehe"
     }
 
-    statge('Checkout') {
+    stage('Checkout') {
         steps {
             echo "Checking out code from Github"
             checkout scm
         }
     }
 
-    statge('Setup python environment') {
+    stage('Setup python environment') {
         steps {
             echo 'Settings up python environment'
             sh '''
@@ -26,7 +26,7 @@ pipeline {
         }
     }
 
-    statge('Train model') {
+    stage('Train model') {
         steps {
             echo 'Train ML model...'
             sh '''
@@ -37,7 +37,7 @@ pipeline {
             '''
         }
     }
-    statge('Test model') {
+    stage('Test model') {
         steps {
             echo 'Testing model training and predictions...'
             sh '''
@@ -47,7 +47,7 @@ pipeline {
         }
     }
 
-    statge('Test API') {
+    stage('Test API') {
         steps {
             echo 'Testing FastAPI application...'
             sh '''
