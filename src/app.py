@@ -7,7 +7,12 @@ import numpy as np
 
 app = FastAPI(title="Iris Classification API", version="1.0.1")
 
-MODEL_PATH = os.path.join(os.path.dirname(__file__), "models", "iris_model.pkl")
+BASE_DIR = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), "..")
+)
+
+MODEL_PATH = os.path.join(BASE_DIR, "models", "iris_model.pkl")
+
 model = None
 
 class PredictionInput(BaseModel):
