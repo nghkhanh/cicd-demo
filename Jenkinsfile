@@ -54,6 +54,7 @@ pipeline {
                 sh '''
                     . venv/bin/activate
                     # Đảm bảo pytest đã được cài ở bước Setup
+                    pip install pytest
                     pytest tests/test_model.py -v --tb=short
                 '''
             }
